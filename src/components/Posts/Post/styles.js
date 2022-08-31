@@ -49,4 +49,9 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  button: {
+    display: 'flex',
+    alignItems: 'start',
+  }
+
 });

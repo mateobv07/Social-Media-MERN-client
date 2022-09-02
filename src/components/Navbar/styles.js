@@ -25,12 +25,13 @@ export default makeStyles((theme) => ({
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     width: '400px',
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    margin: '15px',
   },
   brandContainer: {
     display: 'flex',
@@ -40,4 +41,5 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+
 }));

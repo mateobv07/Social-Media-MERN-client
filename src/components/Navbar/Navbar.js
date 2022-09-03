@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, Link, useLocation } from "react-router-dom";
-import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core'
-import memories from '../../images/memories.png'
-import useStyles from './styles'
+import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core';
+import decode from 'jwt-decode';
+import memories from '../../images/memories.png';
+import useStyles from './styles';
 
 const Navbar = () => {
     const classes = useStyles();
@@ -19,9 +20,16 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        //const credential = user?.credential;
-        
-        //JWT ...
+        const token = user?.token;
+
+        if(token) {
+            const decodedToken = decode(token);
+
+            if(decodedToken.exp * 1000 < new Date().getTime()) {
+                logout();
+            }
+            
+        }
 
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location]) 
@@ -36,7 +44,7 @@ const Navbar = () => {
                 {user?.result.name ? (
                     <>
                         <Avatar className={classes.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} variant="h6">{user.result.given_name}</Typography>
+                        <Typography className={classes.userName} variant="h6">{user.result.given_name ? user.result.given_name : user.result.name }</Typography>
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </>
                 ): (

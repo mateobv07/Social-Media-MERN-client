@@ -42,10 +42,10 @@ const Auth = () => {
         
         const result = jwt_decode(res?.credential);
         console.log(result)
-        const credential = res?.credential;
+        const token = res?.credential;
 
         try {
-            dispatch({ type: 'AUTH', payload: {result, credential} });
+            dispatch({ type: 'AUTH', payload: {result, token} });
             
             history.push('/');
         } catch (error) {
@@ -80,7 +80,7 @@ const Auth = () => {
                         }
                         <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
                         <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
-                        { isSignUp && <Input name="confirmpassword" label="Confirm Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>}
+                        { isSignUp && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>}
                     </Grid>
                     <Grid container direction="column"  justifyContent="space-evenly" alignItems="center" spacing={2}>
                         <Grid item>

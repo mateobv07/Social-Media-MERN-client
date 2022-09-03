@@ -7,20 +7,31 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import Input from './Input';
 import useStyles from './styles';
 import jwt_decode from 'jwt-decode';
+import {signIn, signUp} from '../../actions/auth'
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
-    const [isSignUp, setIsSignUp] = useState(false)
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        if(isSignUp){
+            dispatch(signUp(formData, history));
+        } else {
+            dispatch(signIn(formData, history))
+        }
 
     };
 
-    const handleChange = () => {
-
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value })
     };
 
     const handleShowPassword = () => {

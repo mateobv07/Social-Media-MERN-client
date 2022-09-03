@@ -19,7 +19,7 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        const credential = user?.credential;
+        //const credential = user?.credential;
         
         //JWT ...
 

@@ -90,7 +90,6 @@ const Auth = () => {
                             <GoogleLogin
                             onSuccess={googleSucces}
                             onError={googleFailure}
-                            
                             />
                         </Grid>
                         <Grid item>

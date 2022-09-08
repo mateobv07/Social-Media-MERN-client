@@ -1,8 +1,6 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 import * as api from '../api';
 
-
-
 //Action creators using redux thunk
 export const getPosts = () => async (dispatch) => {
     try {

@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory, Link, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core';
 import decode from 'jwt-decode';
-import memories from '../../images/memories.png';
+import memoriesLogo from '../../images/memories-Logo.png';
+import memoriesText from '../../images/memories-Text.png';
 import useStyles from './styles';
 
 const Navbar = () => {
@@ -37,8 +38,10 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to='/' className={classes.heading} variant="h2" align="center">Memories</Typography>
-                <img className={classes.image} src={memories} alt="memories" height="60" />
+                <Link to="/" className={classes.brandContainer}>
+                    <img src={memoriesText} alt="memories" height="45px" />
+                    <img className={classes.image} src={memoriesLogo} alt="icon" height="45px"/>
+                </Link>
             </div>        
             <Toolbar className={classes.toolbar}>
                 {user?.result.name ? (

@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, FETCH_POST } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, FETCH_POST, COMMENT_POST } from '../constants/actionTypes';
 import * as api from '../api';
 
 //Action creators using redux thunk
@@ -79,6 +79,16 @@ export const likePost = (id) => async (dispatch) => {
         const { data } = await api.likePost(id);
 
         dispatch({ type: UPDATE, payload: data});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const commentPost = (value, id) => async (dispatch) => {
+    try {
+        const { data } = await api.comment(value, id);
+
+        dispatch({ type: COMMENT_POST, payload: data });
     } catch (error) {
         console.log(error);
     }

@@ -33,6 +33,7 @@ export const getPost = (id) => async (dispatch) => {
 
         dispatch({ type: FETCH_POST, payload: data});
         dispatch({ type: END_LOADING })
+
     } catch (error) {
         console.log(error);
     }
@@ -89,6 +90,8 @@ export const commentPost = (value, id) => async (dispatch) => {
         const { data } = await api.comment(value, id);
 
         dispatch({ type: COMMENT_POST, payload: data });
+
+        return data.comments;
     } catch (error) {
         console.log(error);
     }

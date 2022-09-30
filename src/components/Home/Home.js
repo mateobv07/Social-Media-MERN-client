@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core'
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import ChipInput from 'material-ui-chip-input';
-import { getPosts, getPostsBySearch } from '../../actions/posts'
+import { getPostsBySearch } from '../../actions/posts'
 
 import useStyles from './styles'
 import Paginate from "../pagination";

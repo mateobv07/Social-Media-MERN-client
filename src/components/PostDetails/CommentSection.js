@@ -11,14 +11,17 @@ const CommentSection = ({ post }) => {
     const [comments, setComments] = useState(post?.comments || []);
     const [comment, setComment] = useState('')
     const user = JSON.parse(localStorage.getItem('profile'));
+    const commentsRef = useRef();
 
     const handleClick = async () => {
         const finalComment = `${user.result.name}: ${comment}`;
 
         const newComments = await dispatch(commentPost(finalComment, post._id));
-        console.log(newComments);
+
         setComments(newComments);
         setComment('');
+
+        commentsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     return (
@@ -28,8 +31,11 @@ const CommentSection = ({ post }) => {
                     <Typography gutterBottom variant="h6">Comments</Typography>
                     <div className={classes.commentsScroll}>
                         {comments.map((c, i) => (
-                            <Typography key={i} gutterBottom variant="subtitle1"> {c} </Typography>
+                            <Typography key={i} gutterBottom variant="subtitle1">
+                                <strong>{c.split(':')[0]}:</strong> {c.split(':')[1]}
+                            </Typography>
                         ))}
+                        <div ref={commentsRef} />
                     </div>
                 </Grid>
                 {user?.result && (

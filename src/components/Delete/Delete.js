@@ -1,21 +1,24 @@
-import React from "react";
-import { Paper, Typography, Button } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Dialog, Typography, Button, DialogContent, DialogActions } from "@material-ui/core";
 
 import useStyles from './styles'
 
-const Delete = ({ message }) => {
+const Delete = ({ message, confirmDelete, setConfirmDelete, deleteComponent }) => {
     const styles = useStyles();
 
+
     return (
-        <Paper className={styles.container} elevation={6}>
-            <Typography>
-                {message}
-            </Typography>
-            <div>
-                <Button onClick={()=>{}}>Cancel</Button>
-                <Button onClick={()=>{}}>Delete</Button>
-            </div>
-        </Paper>
+        <Dialog elevation={6} open={confirmDelete} onClose={()=>setConfirmDelete(false)}>
+            <DialogContent>
+                <Typography variant='h5'>
+                    {message}
+                </Typography>
+            </DialogContent>
+            <DialogActions className={styles.buttons}>
+                    <Button variant="contained" color="primary" onClick={()=>setConfirmDelete(false)}>Cancel</Button>
+                    <Button variant="contained" color="secondary" onClick={deleteComponent}>Delete</Button>
+            </DialogActions>
+        </Dialog>
     );
 }
 

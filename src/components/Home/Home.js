@@ -55,7 +55,7 @@ const Home = () => {
             <Container maxWidth="xl">
                 <Grid container justifyContent="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
                     <Grid item xs={12} sm={6} md={9}>
-                        <Posts setCurrentId={setCurrentId} />
+                        <Posts setCurrentId={setCurrentId} currentId={currentId} />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={3}>

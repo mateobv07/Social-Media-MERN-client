@@ -7,10 +7,10 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import moment from 'moment';
 import { useDispatch } from "react-redux";
-import { deletePost, likePost } from "../../../actions/posts";
+import { likePost } from "../../../actions/posts";
 import { useHistory } from 'react-router-dom'
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId, confirmDeletePost }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
@@ -72,7 +72,7 @@ const Post = ({ post, setCurrentId }) => {
                     <Likes />
                 </Button>
                 {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
-                    <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))} className={classes.button}>
+                    <Button size="small" color="primary" onClick={() => confirmDeletePost(post._id)} className={classes.button}>
                         <DeleteIcon fontSize="small" />
                         Delete
                     </Button>
